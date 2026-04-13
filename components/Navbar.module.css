@@ -1,0 +1,277 @@
+/* --- NAVBAR WRAPPER --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: transparent;
+}
+
+.navbar.scrolled {
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* --- CONTAINER --- */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  
+  /* CRUCIAL: Centers the dropdown relative to the whole container */
+  position: relative; 
+}
+
+/* --- LOGO --- */
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: auto;
+  height: 65px;
+  object-fit: contain;
+}
+
+/* --- NAVIGATION MENU --- */
+.navMenu {
+  display: flex;
+  list-style: none;
+  gap: 36px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navItem {
+  /* Removed 'position: relative' here so the dropdown ignores this item and centers to the Container */
+  padding-bottom: 25px; 
+  margin-bottom: -25px; 
+}
+
+.navLink {
+  color: #556970;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  padding: 10px 0;
+  
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  /* CRUCIAL: Added relative here so the active green line stays under the text */
+  position: relative;
+}
+
+.navLink:hover {
+  color: #116859;
+}
+
+.navLink.active {
+  color: #116859;
+}
+
+.navLink.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background-color: #369c8a;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(54, 156, 138, 0.8);
+}
+
+.dropdownIcon {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: -2px; 
+}
+
+.hasDropdown:hover .dropdownIcon {
+  transform: rotate(180deg);
+}
+
+/* ========================================= */
+/* --- MEGA MENU (PRODUCTS DROPDOWN) --- */
+/* ========================================= */
+
+.megaMenuWrapper {
+  position: absolute;
+  top: 100%; 
+  left: 50%; /* Perfect center */
+  transform: translateX(-50%) translateY(15px); 
+  width: 1200px; /* Adjust if you want it narrower/wider */
+  max-width: 90vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 100;
+  padding-top: 25px; /* Invisible bridge to prevent mouse-leave */
+}
+
+.hasDropdown:hover .megaMenuWrapper {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.megaMenu {
+  background: #ffffff;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); /* Darker shadow for depth */
+  border: 1px solid #f0f0f0;
+  border-radius: 12px; /* Slightly softer corners */
+  padding: 40px;
+}
+
+.megaGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 30px;
+}
+
+.megaCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.megaTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.megaList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Reduced gap since items now have padding */
+}
+
+/* -------------------------------------- */
+/* HIGH-END PRODUCT HOVER EFFECT ADDED    */
+/* -------------------------------------- */
+.megaItem {
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1.4;
+  display: block;
+  
+  /* Added padding and offset for the background highlight */
+  padding: 8px 12px;
+  margin-left: -12px; 
+  border-radius: 8px;
+}
+
+.megaItem:hover {
+  color: #116859;
+  background-color: rgba(17, 104, 89, 0.05); /* Soft premium teal background */
+  transform: translateX(6px); /* Smoothly slides to the right */
+}
+/* -------------------------------------- */
+
+.moreLink {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f58220; /* Brand Orange */
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.moreLink:hover {
+  color: #d16b15;
+  transform: translateX(4px);
+}
+
+.megaColAll {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.viewAllBtn {
+  display: inline-block;
+  padding: 12px 26px;
+  border: 1.5px solid #116859;
+  color: #116859;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: max-content;
+}
+
+.viewAllBtn:hover {
+  background-color: #116859;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(17, 104, 89, 0.2);
+}
+
+/* --- CTA BUTTON --- */
+.ctaContainer {
+  display: flex;
+  align-items: center;
+}
+
+.quoteBtn {
+  background: linear-gradient(90deg, #f08931 0%, #369c8a 100%);
+  color: #ffffff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 24px rgba(54, 156, 138, 0.35);
+}
+
+.quoteBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(54, 156, 138, 0.45);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 1200px) {
+  .megaMenuWrapper { width: 960px; }
+}
+
+@media (max-width: 1024px) {
+  .navMenu { gap: 24px; }
+  .megaMenuWrapper { width: 800px; }
+  .megaGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .navMenu { display: none; }
+  .quoteBtn { padding: 12px 24px; font-size: 13px; }
+}

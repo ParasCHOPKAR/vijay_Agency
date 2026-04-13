@@ -1,0 +1,257 @@
+/* --- HERO SECTION SETUP --- */
+.hero {
+  position: relative;
+  min-height: 100vh; 
+  display: flex;
+  align-items: center;
+  
+  /* Next.js maps 'public/' to '/' */
+  background-image: url('/hero-background.png'); 
+  
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-color: #fbfbfb; 
+  padding-top: 80px; 
+  overflow: hidden; 
+}
+
+/* --- CONTAINER --- */
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px; /* Caps the maximum width for ultra-wide screens */
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between; /* Pushes text left, image right */
+  align-items: center;
+  height: 100%;
+}
+
+/* --- LEFT CONTENT --- */
+.content {
+  width: 45%; /* Takes up just under half the screen */
+  max-width: 580px; 
+  z-index: 3;
+}
+
+/* --- TYPOGRAPHY --- */
+.title {
+  font-family: 'Arial Black', Impact, sans-serif; 
+  font-size: 3.2rem; 
+  font-weight: 900;
+  color: #1a1e23; 
+  line-height: 1.1; 
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  min-height: 165px; 
+  display: block;
+}
+
+.highlight {
+  color: #116859; 
+  text-shadow: 0px 4px 18px rgba(17, 104, 89, 0.25);
+}
+
+.descriptionContainer {
+  font-size: 1.15rem; 
+  color: #4a5d63; 
+  line-height: 1.6;
+  margin-bottom: 36px;
+  max-width: 480px;
+  min-height: 60px; 
+  font-weight: 500;
+}
+
+/* --- REACT BITS TEXT-TYPE GLOBAL STYLES --- */
+:global(.text-type) {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+:global(.text-type__cursor) {
+  margin-left: 0.15rem;
+  display: inline-block;
+  opacity: 1;
+  color: #116859; 
+  font-weight: bold;
+}
+
+.highlight :global(.text-type__cursor) {
+  color: #116859;
+  text-shadow: 0px 4px 18px rgba(17, 104, 89, 0.4);
+}
+
+:global(.text-type__cursor--hidden) {
+  display: none;
+}
+
+/* --- BUTTONS --- */
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.primaryBtn {
+  background: linear-gradient(90deg, #f08931 0%, #369c8a 100%);
+  color: #ffffff;
+  border: none;
+  padding: 15px 32px; 
+  font-size: 14px; 
+  font-weight: 700;
+  border-radius: 50px; 
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 20px rgba(54, 156, 138, 0.3);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(54, 156, 138, 0.4);
+}
+
+.iconBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; 
+  height: 50px;
+  background-color: #168170;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 8px 20px rgba(22, 129, 112, 0.3);
+}
+
+.iconBtn:hover {
+  transform: translateY(-2px);
+  background-color: #116859;
+}
+
+/* --- RIGHT SIDE: HOUSE & LABELS WRAPPER --- */
+.visualsWrapper {
+  width: 80%; /* Allocates the right side of the screen to the image */
+  display: flex;
+  justify-content: flex-end; /* Aligns the image nicely to the right */
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* New inner wrapper that perfectly hugs the image dimensions */
+.imageInnerWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* Perfect size to match your screenshot */
+}
+
+.houseImage {
+  width: 100%;
+  height: 550px; /* Increased from 560px for a taller image */
+  display: block;
+  object-fit: contain;
+  cursor: pointer; 
+  transition: transform 0.3s ease; 
+  margin-left: -100px; /* Shifts the image towards the left side */
+}
+
+/* Slight scale effect on hover */
+.houseImage:hover {
+  transform: scale(1.02);
+}
+
+.labelsContainer {
+  position: absolute;
+  bottom: 150px;
+  left: 60px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; 
+}
+
+/* Base style for the bracketed labels */
+.label {
+  position: absolute;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0b3b33;
+  letter-spacing: 1px;
+}
+
+/* PRECISE COORDINATES TO MATCH SCREENSHOT */
+.labelTile {
+  top: 38%;  
+  left: 10%; 
+}
+
+.labelMetal {
+  top: 30%;  
+  left: 55%; 
+}
+
+.labelLight {
+  top: 52%;  
+  right: -2%; /* Slightly off the edge like the image */
+}
+
+.labelDark {
+  position: absolute;
+  background-color: #1a1e23;
+  color: #ffffff;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  bottom: 22%; 
+  right: 5%;  
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1200px) {
+  .title { font-size: 2.8rem; min-height: 145px; }
+  .labelLight { right: 2%; } /* Pull it back in on smaller screens */
+}
+
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+  
+  .content {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .buttonGroup {
+    justify-content: center;
+  }
+  
+  .title { font-size: 2.6rem; min-height: 135px; }
+  
+  .visualsWrapper {
+    width: 100%;
+    justify-content: center; /* Center image on mobile */
+  }
+
+  /* Hide labels on mobile to avoid overlapping */
+  .labelsContainer { display: none; } 
+}
+
+@media (max-width: 768px) {
+  .title { font-size: 2.2rem; min-height: 115px; }
+  .descriptionContainer { font-size: 1rem; min-height: 80px; margin: 0 auto 30px auto; }
+}
