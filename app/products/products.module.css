@@ -24,7 +24,9 @@
   position: relative;
   text-align: center;
   padding: 100px 20px 80px;
-  background: var(--primary-green-dark);
+  /* Use a forward slash to point to the public root */
+  background: url('/product_page_hero_section.jpg') center center / cover no-repeat;
+  background-color: var(--primary-green-dark); 
   color: white;
   overflow: hidden;
 }

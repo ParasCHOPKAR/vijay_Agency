@@ -30,7 +30,7 @@ export default function Home() {
     <main>
       <Hero />
       <AboutHome />
-      {/* <VideoSection /> 🔥 Added the Video Section here */}
+      <VideoSection /> 
       <ProductOverview />
       <WhyChoose />
       <WhySpecial />

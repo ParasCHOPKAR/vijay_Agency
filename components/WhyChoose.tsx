@@ -102,7 +102,7 @@ export default function WhyChoose() {
             />
             <img 
               ref={smallImgRef}
-              src="/hero-3.webp" 
+              src="/pvc-sheets.jpg" 
               alt="Roofing Details" 
               className={styles.small} 
             />
