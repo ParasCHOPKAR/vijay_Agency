@@ -55,7 +55,7 @@ export default function VideoSection() {
       
       {/* Floating Text behind the video */}
       <div ref={textRef} className={styles.textContainer}>
-        <h2 className={styles.title}>Precision in Every Sheet</h2>
+    
         <p className={styles.subtitle}>Watch our premium manufacturing process in action.</p>
       </div>
 

@@ -1,0 +1,213 @@
+/* =========================
+   PAGE WRAPPER
+========================= */
+.pageWrapper {
+  min-height: 100vh;
+  background-color: #f8fafc; /* Very light grey for contrast */
+  padding-bottom: 80px;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+  background: linear-gradient(135deg, #1B1B1B 0%, #0a0a0a 100%);
+  color: #ffffff;
+  padding: 100px 5% 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Brand Accent Line in Hero */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #3DB389, #00AEEF, #EC7A23);
+}
+
+.heroTitle {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
+.heroTitle span {
+  color: #3DB389; /* Brand Teal */
+}
+
+.heroDescription {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+/* =========================
+   CONTENT CONTAINER
+========================= */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 60px 5% 0;
+}
+
+.sectionTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1B1B1B;
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+}
+
+/* =========================
+   PRODUCT GRID
+========================= */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f1f5f9;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: #3DB389;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 240px;
+  position: relative;
+  background-color: #e2e8f0;
+  overflow: hidden;
+}
+
+/* Subtle zoom on image hover */
+.card:hover .productImage {
+  transform: scale(1.05);
+}
+
+.productImage {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cardContent {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cardTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1B1B1B;
+  margin-bottom: 15px;
+}
+
+.cardDescription {
+  font-size: 15px;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+.learnMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #00AEEF; /* Brand Blue */
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-top: auto;
+}
+
+.learnMoreBtn:hover {
+  color: #EC7A23; /* Hover to Brand Orange */
+}
+
+.learnMoreBtn svg {
+  transition: transform 0.3s ease;
+}
+
+.learnMoreBtn:hover svg {
+  transform: translateX(4px);
+}
+
+/* =========================
+   BENEFITS SECTION
+========================= */
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+}
+
+.benefitItem {
+  text-align: center;
+}
+
+.benefitIcon {
+  width: 60px;
+  height: 60px;
+  background: rgba(61, 179, 137, 0.1);
+  color: #3DB389;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 24px;
+}
+
+.benefitTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1B1B1B;
+  margin-bottom: 10px;
+}
+
+.benefitDesc {
+  font-size: 14.5px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero { padding: 80px 5% 60px; }
+  .heroTitle { font-size: 32px; }
+  .benefitsGrid { padding: 30px 20px; }
+}

@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar"; // Adjust path if your Navbar is somewhere else
 import styles from "./products.module.css";
 
-// 1. Complete Product Database
+// ==========================================
+// 1. COMPLETE PRODUCT DATABASE
+// ==========================================
 const productsData = [
   // Polycarbonate
   { id: 1, name: "Polycarbonate Awning", category: "Polycarbonate Sheets", desc: "High-impact resistance and UV protection for premium outdoor awnings.", img: "/hero-1.webp" },
@@ -39,18 +42,34 @@ const productsData = [
   { id: 16, name: "Aluminium Foil, Roll", category: "Accessories & Others", desc: "Reflective thermal insulation foil to drastically reduce indoor temperatures.", img: "/hero-1.webp" },
 ];
 
-// Unique categories
+// Dynamically generate unique categories
 const categories = ["All Products", ...Array.from(new Set(productsData.map(p => p.category)))];
 
-// Animations
+// Animation configurations
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
   visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
 };
 
-export default function ProductsPage() {
+// ==========================================
+// 2. INNER COMPONENT (Handles URL Params)
+// ==========================================
+function ProductsContent() {
+  const searchParams = useSearchParams();
+  const categoryQuery = searchParams.get("category");
+
   const [activeCategory, setActiveCategory] = useState("All Products");
 
+  // Listen for URL changes from the Navbar and update the active tab
+  useEffect(() => {
+    if (categoryQuery && categories.includes(categoryQuery)) {
+      setActiveCategory(categoryQuery);
+    } else {
+      setActiveCategory("All Products");
+    }
+  }, [categoryQuery]);
+
+  // Filter products based on selected category
   const filteredProducts = activeCategory === "All Products"
     ? productsData
     : productsData.filter(p => p.category === activeCategory);
@@ -64,7 +83,7 @@ export default function ProductsPage() {
 
       <main className={styles.wrapper}>
         
-        {/* ================= HERO ================= */}
+        {/* HERO SECTION */}
         <section className={styles.hero}>
           <div className={styles.heroGlow}></div>
           <div className={styles.heroPattern}></div>
@@ -79,7 +98,7 @@ export default function ProductsPage() {
           </motion.div>
         </section>
 
-        {/* ================= MAIN CONTENT ================= */}
+        {/* MAIN LAYOUT */}
         <div className={styles.layoutContainer}>
           
           {/* SIDEBAR FILTERS (Sticky) */}
@@ -110,9 +129,8 @@ export default function ProductsPage() {
             </div>
           </aside>
 
-          {/* PRODUCT GRID */}
+          {/* PRODUCT GRID SECTION */}
           <section className={styles.productSection}>
-            
             <div className={styles.sectionHeader}>
               <h2>{activeCategory}</h2>
               <span>Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}</span>
@@ -150,7 +168,6 @@ export default function ProductsPage() {
                       <p>{product.desc}</p>
                       
                       <div className={styles.cardFooter}>
-                        {/* Changed from Request Quote to View Details */}
                         <button className={styles.detailsBtn}>
                           <span>View Details</span>
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.arrowIcon}>
@@ -164,7 +181,7 @@ export default function ProductsPage() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Empty State Fallback */}
+            {/* Empty State Fallback (Just in case a category has no products) */}
             {filteredProducts.length === 0 && (
               <motion.div 
                 initial={{ opacity: 0 }} 
@@ -174,11 +191,10 @@ export default function ProductsPage() {
                 <p>No products found in this category.</p>
               </motion.div>
             )}
-
           </section>
         </div>
 
-        {/* ================= CALL TO ACTION ================= */}
+        {/* CALL TO ACTION SECTION */}
         <section className={styles.ctaSection}>
           <motion.div 
             className={styles.ctaContent}
@@ -198,5 +214,20 @@ export default function ProductsPage() {
 
       </main>
     </>
+  );
+}
+
+// ==========================================
+// 3. MAIN EXPORT WRAPPED IN SUSPENSE
+// ==========================================
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8fafc', color: '#1B1B1B', fontWeight: 600 }}>
+        Loading Catalog...
+      </div>
+    }>
+      <ProductsContent />
+    </Suspense>
   );
 }
